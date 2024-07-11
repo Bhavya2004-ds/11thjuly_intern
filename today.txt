@@ -1,0 +1,42 @@
+CREATING A DATABASE AND COLLECTION IN MONGODB:-
+1. Login into MongoDB Atlas.
+2. From the cluster0 click on the Connect option.
+3. Choose the developer tools option and therespective connection string.
+Using MongoDB Compass:
+1. Launch MongoDB Compass.
+2. In the connection dialog, paste your MongoDB connection string and click "Connect".
+3. Once connected, click on the "Create Database" button in the left sidebar.
+4. Enter “first_database” as the database name.
+5. Enter “products” as the collection name.
+6. Click "Create Database".
+7. Import the productdata.json file from the folder so that the documents are transferred into
+the collection named “products”.
+8. “first_database” is listed in the databases, with “products” as a collection under
+it.
+Using MongoDB Shell:
+1. Launch the terminal.
+2. Paste the connection string copied from Atlas for shell.
+3. Enter the password.Now the terminal acts as a mongoDB shell.
+4. Use the use command to switch to the new database ”first_database” (this will
+create the database if it doesn't already exist):
+use first_database
+5. Insert a document into a new collection “products” to create it:
+db.products.insertOne({ name: "sample product" })
+6. List all databases to verify the new database using show dbs.
+7. Switch to the new database and list collections:
+use first_database
+show collections
+Using VS Code:
+1. Install the MongoDB extension for VS Code from the Extensions Marketplace.
+2. Click on the MongoDB icon in the Activity Bar on the side of the window.
+3. Click on "Connect" and paste the MongoDB connection string to connect to your
+MongoDB instance.
+4. Right-click on the connection and select "Create Database".
+5. Enter first_database as the database name.
+6. Right-click on the newly created “first_database” database and select "Create
+Collection".
+7. Enter “products” as the collection name.
+8. The new database “first_database” and collection ‘products” should now appear
+in the MongoDB view in VS Code.
+9. Insert the document(s) in the collection using insertOne or insertMany query.
+db.getCollection('products').insertMany({....});
