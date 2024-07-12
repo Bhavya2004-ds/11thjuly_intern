@@ -1,0 +1,60 @@
+1. Group users by role and calculate the average salary for each role.
+2. Group users by city and find the total number of users in each city.
+3. Group users by gender and determine the average age for each gender.
+4. Group users by role and city, and calculate the total salary for each subgroup.
+5. Group users by gender and city, and find the maximum salary in each subgroup.
+6. Group users by skills and count how many users have each skill.
+7. Group users by role and find the minimum age for each role.
+8. Group users by city and gender, and calculate the average salary for each subgroup.
+9. Group users by role and determine the total number of unique cities for each role.
+10. Group users by age and count the number of users in each age group.
+11. Group users by city and calculate the average number of skills per user in each city.
+12. Group users by role and find the highest salary in each role.
+13. Group users by gender and calculate the total number of users for each gender.
+14. Group users by city and determine the average age for users in each city.
+15. Group users by role and gender, and calculate the average salary for each subgroup.
+16. Group users by skills and determine the total number of users for each skill.
+17. Group users by age and find the maximum salary for each age group.
+18. Group users by role and calculate the total number of users with more than three skills.
+19. Group users by gender and city, and find the average number of skills per user in each subgroup.
+20. Group users by role and determine the highest and lowest salaries for each role.
+1. Group users by city and find the average number of users per role in each city.
+2. Group users by role and gender, and calculate the total salary for each subgroup.
+3. Group users by age and determine the total number of users with a salary above 1,000,000.
+4. Group users by skills and find the average salary for users with each skill.
+5. Group users by role and city, and find the average age for each subgroup.
+6. Group users by gender and calculate the total number of users with Java as a skill.
+7. Group users by city and determine the maximum number of skills any user in each city possesses.
+8. Group users by role and calculate the total number of users for each role with Python as a skill.
+9. Group users by gender and city, and find the average salary for users in each subgroup with more than two skills.
+10. Group users by age and determine the average number of skills per user in each age group.
+11. Group users by role and find the total salary of users who have "customer" as their role and live in Mumbai.
+12. Group users by city and find the maximum salary in each city for users with "admin" role.
+13. Group users by gender and calculate the total number of users with salary above 500,000.
+14. Group users by skills and determine the average age for users with each skill.
+15. Group users by role and find the average number of skills for users with salary below 700,000.
+16. Group users by city and gender, and calculate the average salary for each subgroup with "Python" skill.
+17. Group users by age and determine the total number of users with the role "admin" in each age group.
+18. Group users by role and city, and find the total number of users with "C++" as a skill in each subgroup.
+19. Group users by gender and calculate the total number of users with salary above the average salary of all users.
+20. Group users by skills and determine the maximum age of users with each skill.
+21. Group users by role and city, and calculate the total number of users with more than one skill.
+22. Group users by gender and city, and determine the total number of users with a salary less than 500,000 in each subgroup.
+23. Group users by age and find the average salary of users who have "customer" role in each age group.
+24. Group users by role and determine the average salary for users with "Kotlin" as a skill.
+25. Group users by city and calculate the total number of users with "admin" role in each city.
+26. Group users by gender and determine the total number of users with "Java" and "Python" both as skills.
+27. Group users by age and find the total number of users with the role "customer" in each age group.
+28. Group users by role and city, and calculate the total number of users with "DBMS" as a skill in each subgroup.
+29. Group users by gender and determine the total number of users with more than three skills in each gender.
+30. Group users by city and find the average number of skills for users in each city with salary above 1,000,000.
+31. Group users by age and determine the maximum salary for users with "admin" role in each age group.
+32. Group users by role and city, and find the total salary of users with "JavaScript" as a skill in each subgroup.
+33. Group users by gender and determine the average salary for users with the role "customer" in each gender.
+34. Group users by city and calculate the total number of users with "React" as a skill in each city.
+35. Group users by age and determine the average salary for users with "SQL" as a skill in each age group.
+36. Group users by role and find the total number of users with "Django" as a skill in each role.
+37. Group users by gender and determine the maximum number of skills any user in each gender possesses.
+38. Group users by city and calculate the total number of users with "Node.js" as a skill in each city.
+39. Group users by age and find the total number of users with "HTML" and "CSS" both as skills in each age group.
+40. Group users by role and gender, and determine the average number of skills for each subgroup with salary above 1,000,000.
