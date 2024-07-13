@@ -37,6 +37,37 @@
 17. Group users by age and determine the total number of users with the role "admin" in each age group.
 18. Group users by role and city, and find the total number of users with "C++" as a skill in each subgroup.
 19. Group users by gender and calculate the total number of users with salary above the average salary of all users.
+ans-[
+  {
+    $group: {
+      _id: null,
+     avgSal:{$avg:"$salary"},
+      users:{$push:"$$ROOT"}
+    }
+  },{
+    $unwind:"$users"
+  },
+  {
+    $addFields: {
+      "users.avgSalary":"$avgSal"
+    }
+  },
+  {
+    $replaceRoot: {
+      newRoot: "$users"
+    }
+  },{
+    $match: {
+      $expr:{$gt:["$salary","$avgSalary"]}
+    }
+  },
+  {
+    $group: {
+      _id: "$gender",
+      countuser:{$sum:1}
+    }
+  }
+]
 20. Group users by skills and determine the maximum age of users with each skill.
 21. Group users by role and city, and calculate the total number of users with more than one skill.
 22. Group users by gender and city, and determine the total number of users with a salary less than 500,000 in each subgroup.
