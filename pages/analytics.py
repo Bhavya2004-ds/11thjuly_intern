@@ -1,12 +1,26 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import plotly.express as px
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-import seaborn as sns
 import matplotlib.pyplot as plt
-from scipy import stats
+import seaborn as sns
+
+# Handle optional imports gracefully
+try:
+    import plotly.express as px
+    import plotly.graph_objects as go
+    from plotly.subplots import make_subplots
+    PLOTLY_AVAILABLE = True
+except ImportError:
+    PLOTLY_AVAILABLE = False
+    st.warning("Plotly not available. Some interactive charts will be replaced with matplotlib.")
+
+try:
+    from scipy import stats
+    SCIPY_AVAILABLE = True
+except ImportError:
+    SCIPY_AVAILABLE = False
+    st.warning("SciPy not available. Some statistical features will be limited.")
+
 from utils.data_processing import get_student_insights
 
 def show():
