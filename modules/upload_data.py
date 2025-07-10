@@ -13,13 +13,13 @@ def show():
     # Main header
     st.markdown("""
     <div class="main-header">
-        <h1>📤 Upload & Analyze Student Data</h1>
+        <h1>Upload & Analyze Student Data</h1>
         <p>Upload your student dataset to get instant performance predictions and insights</p>
     </div>
     """, unsafe_allow_html=True)
     
     # Instructions section
-    with st.expander("📋 Data Upload Instructions", expanded=False):
+    with st.expander("Data Upload Instructions", expanded=False):
         st.markdown("""
         ### Required CSV Format
         Your CSV file should contain the following columns:
@@ -39,11 +39,11 @@ def show():
         - `Family_Income_Level`: Low/Medium/High
         - Any other demographic or academic data
         
-        💡 **Tip:** Make sure your data is clean and contains no missing values for best results.
+        **Tip:** Make sure your data is clean and contains no missing values for best results.
         """)
     
     # File upload section
-    st.markdown('<p class="section-header">📁 File Upload</p>', unsafe_allow_html=True)
+    st.markdown('<p class="section-header">File Upload</p>', unsafe_allow_html=True)
     
     col1, col2 = st.columns([2, 1])
     
@@ -55,7 +55,7 @@ def show():
         )
         
         # Sample data option
-        if st.button("🎲 Use Sample Data for Demo", use_container_width=True):
+        if st.button("Use Sample Data for Demo", use_container_width=True):
             sample_df = create_sample_data()
             st.session_state.uploaded_df = sample_df
             st.success("Sample data loaded! Scroll down to see the analysis.")
@@ -64,7 +64,7 @@ def show():
     with col2:
         st.markdown("""
         <div class="info-card">
-            <h4>📊 What You'll Get</h4>
+            <h4>What You'll Get</h4>
             <ul style="text-align: left; margin-left: 1rem;">
                 <li>Predicted exam scores</li>
                 <li>Risk level classification</li>
@@ -83,11 +83,11 @@ def show():
                 df = st.session_state.uploaded_df
                 st.info("Using sample data for demonstration")
             else:
-                with st.spinner("📖 Reading your data..."):
+                with st.spinner("Reading your data..."):
                     df = pd.read_csv(uploaded_file)
             
             # Display data info
-            st.markdown('<p class="section-header">📋 Data Overview</p>', unsafe_allow_html=True)
+            st.markdown('<p class="section-header">Data Overview</p>', unsafe_allow_html=True)
             
             col1, col2, col3 = st.columns(3)
             with col1:
@@ -99,11 +99,11 @@ def show():
                 st.metric("Missing Values", missing_values)
             
             # Show data preview
-            with st.expander("👀 Preview Data", expanded=False):
+            with st.expander("Preview Data", expanded=False):
                 st.dataframe(df.head(), use_container_width=True)
             
             # Data preprocessing and prediction
-            with st.spinner("🤖 Analyzing data and making predictions..."):
+            with st.spinner("Analyzing data and making predictions..."):
                 try:
                     # Preprocess data
                     df_processed = preprocess_data(df.copy())
@@ -125,7 +125,7 @@ def show():
                     # Store in session state
                     st.session_state.df = df
                     
-                    st.success("✅ Analysis complete! Here are your results:")
+                    st.success("Analysis complete! Here are your results:")
                     
                 except Exception as e:
                     st.error(f"Error during prediction: {str(e)}")
@@ -133,7 +133,7 @@ def show():
                     return
             
             # Results section
-            st.markdown('<p class="section-header">🎯 Prediction Results</p>', unsafe_allow_html=True)
+            st.markdown('<p class="section-header">Prediction Results</p>', unsafe_allow_html=True)
             
             # Key metrics
             total_students = len(df)
@@ -187,7 +187,7 @@ def show():
                 """, unsafe_allow_html=True)
             
             # Visualizations
-            st.markdown('<p class="section-header">📊 Score Distribution</p>', unsafe_allow_html=True)
+            st.markdown('<p class="section-header">Score Distribution</p>', unsafe_allow_html=True)
             
             # Score distribution chart
             fig = px.histogram(
@@ -214,10 +214,10 @@ def show():
             st.plotly_chart(fig, use_container_width=True)
             
             # Results tables
-            st.markdown('<p class="section-header">📋 Detailed Results</p>', unsafe_allow_html=True)
+            st.markdown('<p class="section-header">Detailed Results</p>', unsafe_allow_html=True)
             
             # Tabs for different views
-            tab1, tab2, tab3 = st.tabs(["🔍 All Students", "⚠️ At-Risk Students", "📈 Top Performers"])
+            tab1, tab2, tab3 = st.tabs(["All Students", "At-Risk Students", "Top Performers"])
             
             with tab1:
                 st.markdown("#### All Student Predictions")
@@ -251,14 +251,14 @@ def show():
                     # Download button for at-risk students
                     csv = at_risk_students.to_csv(index=False).encode('utf-8')
                     st.download_button(
-                        label="📥 Download At-Risk Students Report",
+                        label="Download At-Risk Students Report",
                         data=csv,
                         file_name="at_risk_students.csv",
                         mime="text/csv",
                         use_container_width=True
                     )
                 else:
-                    st.success("🎉 Great news! No students are predicted to be at risk.")
+                    st.success("Great news! No students are predicted to be at risk.")
             
             with tab3:
                 top_performers = df[df['Predicted_Score'] >= 70].copy()
@@ -279,7 +279,7 @@ def show():
                     st.info("No students are predicted to achieve excellence level (70%+) yet.")
             
             # Action recommendations
-            st.markdown('<p class="section-header">💡 Recommended Actions</p>', unsafe_allow_html=True)
+            st.markdown('<p class="section-header">Recommended Actions</p>', unsafe_allow_html=True)
             
             col1, col2 = st.columns(2)
             
@@ -287,7 +287,7 @@ def show():
                 if high_risk > 0:
                     st.markdown(f"""
                     <div class="info-card danger-card">
-                        <h4>🚨 Immediate Action Required</h4>
+                        <h4>Immediate Action Required</h4>
                         <p><strong>{high_risk}</strong> students are at high risk of failing.</p>
                         <ul style="text-align: left; margin-left: 1rem;">
                             <li>Schedule one-on-one meetings</li>
@@ -300,7 +300,7 @@ def show():
                 else:
                     st.markdown("""
                     <div class="info-card success-card">
-                        <h4>✅ No High-Risk Students</h4>
+                        <h4>No High-Risk Students</h4>
                         <p>Excellent! Your current teaching strategies are working well.</p>
                     </div>
                     """, unsafe_allow_html=True)
@@ -309,7 +309,7 @@ def show():
                 if moderate_risk > 0:
                     st.markdown(f"""
                     <div class="info-card warning-card">
-                        <h4>⚠️ Monitor Closely</h4>
+                        <h4>Monitor Closely</h4>
                         <p><strong>{moderate_risk}</strong> students need extra support.</p>
                         <ul style="text-align: left; margin-left: 1rem;">
                             <li>Increase study group participation</li>
@@ -322,7 +322,7 @@ def show():
                 else:
                     st.markdown("""
                     <div class="info-card success-card">
-                        <h4>📈 Strong Performance</h4>
+                        <h4>Strong Performance</h4>
                         <p>Most students are on track for success!</p>
                     </div>
                     """, unsafe_allow_html=True)
@@ -335,14 +335,14 @@ def show():
         # Show helpful information when no file is uploaded
         st.markdown("""
         <div class="info-card">
-            <h3>🚀 Ready to Get Started?</h3>
+            <h3>Ready to Get Started?</h3>
             <p>Upload your student data CSV file above to:</p>
             <ul style="text-align: left; margin-left: 2rem;">
-                <li>📊 Get instant performance predictions</li>
-                <li>🎯 Identify at-risk students</li>
-                <li>📈 Visualize score distributions</li>
-                <li>📋 Generate actionable reports</li>
-                <li>💾 Download results for further analysis</li>
+                <li>Get instant performance predictions</li>
+                <li>Identify at-risk students</li>
+                <li>Visualize score distributions</li>
+                <li>Generate actionable reports</li>
+                <li>Download results for further analysis</li>
             </ul>
             <p style="margin-top: 1rem;"><strong>Don't have data?</strong> Click the "Use Sample Data" button to see how it works!</p>
         </div>

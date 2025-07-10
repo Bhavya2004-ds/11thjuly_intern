@@ -19,13 +19,13 @@ def load_css():
         
         /* Custom header styles */
         .main-header {
-            background: linear-gradient(135deg, #2E86AB 0%, #A23B72 100%);
+            background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
             padding: 2rem 1.5rem;
             border-radius: 15px;
             margin-bottom: 2rem;
             color: white;
             text-align: center;
-            box-shadow: 0 8px 32px rgba(46, 134, 171, 0.3);
+            box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
         }
         
         .main-header h1 {
@@ -62,7 +62,7 @@ def load_css():
         .metric-value {
             font-size: 2.5rem;
             font-weight: 700;
-            color: #2E86AB;
+            color: #3B82F6;
             margin: 0 0 0.5rem 0;
         }
         
@@ -80,7 +80,7 @@ def load_css():
             padding: 1.5rem;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid #2E86AB;
+            border-left: 4px solid #3B82F6;
             margin: 1rem 0;
         }
         
@@ -104,7 +104,7 @@ def load_css():
         
         /* Button styles */
         .stButton > button {
-            background: linear-gradient(135deg, #2E86AB 0%, #A23B72 100%);
+            background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
             color: white;
             padding: 0.75rem 1.5rem;
             border-radius: 8px;
@@ -117,7 +117,7 @@ def load_css():
         
         .stButton > button:hover {
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(46, 134, 171, 0.4);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
         }
         
         /* Sidebar styles */
@@ -185,13 +185,13 @@ def load_css():
         }
         
         .stFileUploader > div > div:hover {
-            border-color: #2E86AB;
+            border-color: #3B82F6;
             background-color: #f1f9ff;
         }
         
         /* Progress bar */
         .stProgress > div > div > div {
-            background: linear-gradient(135deg, #2E86AB 0%, #A23B72 100%);
+            background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
         }
         
         /* Tabs */
@@ -207,7 +207,7 @@ def load_css():
         }
         
         .stTabs [aria-selected="true"] {
-            background: linear-gradient(135deg, #2E86AB 0%, #A23B72 100%);
+            background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
             color: white !important;
         }
         
@@ -221,6 +221,116 @@ def load_css():
             border-bottom: 2px solid #e2e8f0;
         }
         
+        /* Authentication styles */
+        .auth-container {
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .auth-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .auth-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .auth-header h1 {
+            color: #3B82F6;
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .auth-header p {
+            color: #666;
+            margin: 0;
+            font-size: 1.1rem;
+        }
+        
+        .demo-info {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            border-left: 4px solid #3B82F6;
+        }
+        
+        .demo-info h4 {
+            margin: 0 0 0.5rem 0;
+            color: #3B82F6;
+            font-size: 1rem;
+        }
+        
+        .demo-info p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .features-preview, .signup-benefits {
+            margin-top: 2rem;
+        }
+        
+        .features-preview h4, .signup-benefits h4 {
+            color: #3B82F6;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .features-grid, .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .feature-item, .benefit-item {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .feature-item h5, .benefit-item h5 {
+            margin: 0 0 0.5rem 0;
+            color: #3B82F6;
+            font-size: 0.95rem;
+        }
+        
+        .feature-item p, .benefit-item p {
+            margin: 0;
+            font-size: 13px;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        .password-requirements {
+            background: #fef7cd;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .password-requirements h4 {
+            margin: 0 0 0.5rem 0;
+            color: #f59e0b;
+            font-size: 1rem;
+        }
+        
+        .password-requirements ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            color: #666;
+            font-size: 14px;
+        }
+        
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .main-header h1 {
@@ -229,6 +339,19 @@ def load_css():
             
             .metric-value {
                 font-size: 2rem;
+            }
+            
+            .auth-container {
+                margin: 1rem auto;
+                padding: 0 0.5rem;
+            }
+            
+            .auth-card {
+                padding: 1.5rem;
+            }
+            
+            .features-grid, .benefits-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>

@@ -4,13 +4,13 @@ def show():
     # Main header
     st.markdown("""
     <div class="main-header">
-        <h1>ℹ️ About EduPredict</h1>
+        <h1>About EduPredict</h1>
         <p>AI-powered student performance analytics for educational excellence</p>
     </div>
     """, unsafe_allow_html=True)
     
     # Overview section
-    st.markdown('<p class="section-header">🎯 What is EduPredict?</p>', unsafe_allow_html=True)
+    st.markdown('<p class="section-header">What is EduPredict?</p>', unsafe_allow_html=True)
     
     st.markdown("""
     <div class="info-card">
@@ -40,7 +40,7 @@ def show():
         
         st.markdown("""
         <div class="info-card">
-            <h4>📊 Interactive Dashboard</h4>
+            <h4>Interactive Dashboard</h4>
             <ul style="text-align: left;">
                 <li>Real-time performance metrics</li>
                 <li>Visual analytics and charts</li>
@@ -53,7 +53,7 @@ def show():
     with col2:
         st.markdown("""
         <div class="info-card">
-            <h4>📈 Advanced Analytics</h4>
+            <h4>Advanced Analytics</h4>
             <ul style="text-align: left;">
                 <li>Statistical analysis</li>
                 <li>Correlation studies</li>
@@ -65,7 +65,7 @@ def show():
         
         st.markdown("""
         <div class="info-card">
-            <h4>📋 Actionable Reports</h4>
+            <h4>Actionable Reports</h4>
             <ul style="text-align: left;">
                 <li>At-risk student identification</li>
                 <li>Intervention recommendations</li>
@@ -117,14 +117,14 @@ def show():
         """, unsafe_allow_html=True)
     
     # Data requirements section
-    st.markdown('<p class="section-header">📋 Data Requirements</p>', unsafe_allow_html=True)
+    st.markdown('<p class="section-header">Data Requirements</p>', unsafe_allow_html=True)
     
     col1, col2 = st.columns([1, 1])
     
     with col1:
         st.markdown("""
         <div class="info-card">
-            <h4>📊 Required Columns</h4>
+            <h4>Required Columns</h4>
             <ul style="text-align: left;">
                 <li><strong>Student_ID:</strong> Unique identifier</li>
                 <li><strong>Age:</strong> Student age (16-20)</li>
@@ -142,7 +142,7 @@ def show():
     with col2:
         st.markdown("""
         <div class="info-card">
-            <h4>💡 Data Quality Tips</h4>
+            <h4>Data Quality Tips</h4>
             <ul style="text-align: left;">
                 <li>Ensure data is clean and complete</li>
                 <li>Use consistent formatting</li>
@@ -162,7 +162,7 @@ def show():
         """, unsafe_allow_html=True)
     
     # Risk levels explanation
-    st.markdown('<p class="section-header">🎯 Risk Level Classifications</p>', unsafe_allow_html=True)
+    st.markdown('<p class="section-header">Risk Level Classifications</p>', unsafe_allow_html=True)
     
     col1, col2, col3, col4 = st.columns(4)
     
@@ -228,7 +228,7 @@ def show():
     with col2:
         st.markdown("""
         <div class="info-card">
-            <h4>🛠️ Technology Stack</h4>
+            <h4>Technology Stack</h4>
             <ul style="text-align: left;">
                 <li><strong>Frontend:</strong> Streamlit</li>
                 <li><strong>Backend:</strong> Python</li>
@@ -244,7 +244,7 @@ def show():
     
     st.markdown("""
     <div class="info-card">
-        <h4>🛡️ Data Protection</h4>
+        <h4>Data Protection</h4>
         <p>We take data privacy seriously and implement the following measures:</p>
         <ul style="text-align: left; margin-left: 2rem;">
             <li><strong>Local Processing:</strong> All data is processed locally in your browser</li>
@@ -264,7 +264,7 @@ def show():
     with col1:
         st.markdown("""
         <div class="info-card">
-            <h4>📚 Getting Started</h4>
+            <h4>Getting Started</h4>
             <ol style="text-align: left; margin-left: 1rem;">
                 <li>Prepare your student data in CSV format</li>
                 <li>Navigate to "Upload & Analyze" page</li>
@@ -278,7 +278,7 @@ def show():
     with col2:
         st.markdown("""
         <div class="info-card">
-            <h4>💡 Best Practices</h4>
+            <h4>Best Practices</h4>
             <ul style="text-align: left; margin-left: 1rem;">
                 <li>Regularly update student data</li>
                 <li>Focus on high-risk students first</li>
@@ -294,10 +294,10 @@ def show():
     
     st.markdown("""
     <div style="text-align: center; padding: 2rem; color: #666;">
-        <h3>🎓 EduPredict</h3>
+        <h3>EduPredict</h3>
         <p>Empowering educators with AI-driven insights for student success</p>
         <p style="font-size: 0.9rem; margin-top: 1rem;">
-            Built with ❤️ for educators who care about every student's journey
+            Built with for educators who care about every student's journey
         </p>
         <p style="font-size: 0.8rem; color: #888;">
             © 2024 EduPredict. Made with Streamlit and Python.

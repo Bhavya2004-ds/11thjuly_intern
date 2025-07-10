@@ -1,0 +1,10 @@
+{
+  "demo": {
+    "password": "8bb0cf6eb9b17d0f7d22b456f121257dc1254e1f01665370476383ea776df414",
+    "email": "demo@edupredict.com",
+    "first_name": "Demo",
+    "last_name": "User",
+    "role": "Teacher",
+    "created_at": "2024-01-01"
+  }
+}

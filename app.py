@@ -5,7 +5,7 @@ from pathlib import Path
 # Add the current directory to the Python path
 sys.path.append(str(Path(__file__).parent))
 
-from modules import dashboard, upload_data, analytics, about
+from modules import dashboard, upload_data, analytics, about, login, signup
 from utils.styles import load_css
 
 # Page configuration
@@ -21,31 +21,49 @@ load_css()
 
 # Initialize session state
 if 'page' not in st.session_state:
-    st.session_state.page = 'Dashboard'
+    if st.session_state.get('logged_in', False):
+        st.session_state.page = 'Dashboard'
+    else:
+        st.session_state.page = 'Login'
 
 # Sidebar navigation
 with st.sidebar:
     st.markdown("""
     <div style="text-align: center; padding: 1rem 0;">
-        <h1 style="color: #2E86AB; margin: 0;">🎓 EduPredict</h1>
+        <h1 style="color: #3B82F6; margin: 0;">EduPredict</h1>
         <p style="color: #666; margin: 0.5rem 0 2rem 0; font-style: italic;">
             Empowering educators with data-driven insights
         </p>
     </div>
     """, unsafe_allow_html=True)
     
-    # Navigation menu
-    pages = {
-        "📊 Dashboard": "Dashboard",
-        "📤 Upload & Analyze": "Upload",
-        "📈 Advanced Analytics": "Analytics", 
-        "ℹ️ About": "About"
-    }
+    # Check if user is logged in
+    is_logged_in = st.session_state.get('logged_in', False)
     
-    st.markdown("### Navigation")
-    for display_name, page_key in pages.items():
-        if st.button(display_name, key=page_key, use_container_width=True):
-            st.session_state.page = page_key
+    if not is_logged_in:
+        # Show login/signup navigation
+        auth_pages = {
+            "Sign In": "Login",
+            "Create Account": "Signup"
+        }
+        
+        st.markdown("### Get Started")
+        for display_name, page_key in auth_pages.items():
+            if st.button(display_name, key=page_key, use_container_width=True):
+                st.session_state.page = page_key
+    else:
+        # Show main navigation for logged in users
+        pages = {
+            "Dashboard": "Dashboard",
+            "Upload & Analyze": "Upload",
+            "Advanced Analytics": "Analytics", 
+            "About": "About"
+        }
+        
+        st.markdown("### Navigation")
+        for display_name, page_key in pages.items():
+            if st.button(display_name, key=page_key, use_container_width=True):
+                st.session_state.page = page_key
     
     st.markdown("---")
     
@@ -69,11 +87,27 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
 # Main content area
-if st.session_state.page == 'Dashboard':
-    dashboard.show()
+if st.session_state.page == 'Login':
+    login.show()
+elif st.session_state.page == 'Signup':
+    signup.show()
+elif st.session_state.page == 'Dashboard':
+    if st.session_state.get('logged_in', False):
+        dashboard.show()
+    else:
+        st.session_state.page = 'Login'
+        st.rerun()
 elif st.session_state.page == 'Upload':
-    upload_data.show()
+    if st.session_state.get('logged_in', False):
+        upload_data.show()
+    else:
+        st.session_state.page = 'Login'
+        st.rerun()
 elif st.session_state.page == 'Analytics':
-    analytics.show()
+    if st.session_state.get('logged_in', False):
+        analytics.show()
+    else:
+        st.session_state.page = 'Login'
+        st.rerun()
 elif st.session_state.page == 'About':
     about.show()

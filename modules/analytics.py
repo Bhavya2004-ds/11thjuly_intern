@@ -27,7 +27,7 @@ def show():
     # Main header
     st.markdown("""
     <div class="main-header">
-        <h1>📈 Advanced Analytics</h1>
+        <h1>Advanced Analytics</h1>
         <p>Deep dive into student performance data with statistical analysis and insights</p>
     </div>
     """, unsafe_allow_html=True)
@@ -36,7 +36,7 @@ def show():
     if 'df' not in st.session_state or st.session_state.df is None:
         st.markdown("""
         <div class="info-card warning-card">
-            <h3>📊 No Data Available</h3>
+            <h3>No Data Available</h3>
             <p>Please upload student data first to view advanced analytics.</p>
             <p>Navigate to the <strong>"Upload & Analyze"</strong> page to get started.</p>
         </div>
@@ -51,10 +51,10 @@ def show():
     
     # Analytics tabs
     tab1, tab2, tab3, tab4 = st.tabs([
-        "📊 Performance Analysis", 
+        "Performance Analysis", 
         "🔗 Correlation Analysis", 
         "👥 Demographic Insights",
-        "📈 Statistical Summary"
+        "Statistical Summary"
     ])
     
     with tab1:
@@ -71,7 +71,7 @@ def show():
 
 def show_performance_analysis(df):
     """Show detailed performance analysis"""
-    st.markdown("### 🎯 Performance Distribution Analysis")
+    st.markdown("### Performance Distribution Analysis")
     
     col1, col2 = st.columns(2)
     
@@ -109,7 +109,7 @@ def show_performance_analysis(df):
     
     # Performance by study hours
     if 'Study_Hours_per_Week' in df.columns:
-        st.markdown("### 📚 Study Hours vs Performance")
+        st.markdown("### Study Hours vs Performance")
         
         # Create bins for study hours
         df['Study_Hours_Bin'] = pd.cut(df['Study_Hours_per_Week'], 
@@ -158,7 +158,7 @@ def show_performance_analysis(df):
     
     # Attendance analysis
     if 'Attendance_Rate' in df.columns:
-        st.markdown("### 🎯 Attendance vs Performance")
+        st.markdown("### Attendance vs Performance")
         
         col1, col2 = st.columns(2)
         
@@ -238,7 +238,7 @@ def show_correlation_analysis(df):
             col1, col2 = st.columns(2)
             
             with col1:
-                st.markdown("#### 🔍 Strongest Predictors")
+                st.markdown("#### Strongest Predictors")
                 top_predictors = score_correlations.head(5)
                 
                 for var, corr in top_predictors.items():
@@ -322,7 +322,7 @@ def show_demographic_insights(df):
     
     # Parental education analysis
     if 'Parental_Education_Level' in df.columns:
-        st.markdown("#### 🎓 Performance by Parental Education")
+        st.markdown("#### Performance by Parental Education")
         
         # For encoded data, we'll show the analysis with encoded values
         education_stats = df.groupby('Parental_Education_Level')['Predicted_Score'].agg(['mean', 'std', 'count']).reset_index()
@@ -345,7 +345,7 @@ def show_demographic_insights(df):
     
     # Extracurricular activities analysis
     if 'Extracurricular_Activities' in df.columns:
-        st.markdown("#### 🏃‍♂️ Impact of Extracurricular Activities")
+        st.markdown("#### Impact of Extracurricular Activities")
         
         df_display = df.copy()
         if df['Extracurricular_Activities'].dtype in ['int64', 'float64']:
@@ -385,13 +385,13 @@ def show_demographic_insights(df):
 
 def show_statistical_summary(df):
     """Show statistical summary and insights"""
-    st.markdown("### 📈 Statistical Summary")
+    st.markdown("### Statistical Summary")
     
     # Basic statistics
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown("#### 📊 Descriptive Statistics")
+        st.markdown("#### Descriptive Statistics")
         
         stats_df = df['Predicted_Score'].describe().round(2)
         stats_dict = {
@@ -405,7 +405,7 @@ def show_statistical_summary(df):
         st.dataframe(stats_display_df, use_container_width=True, hide_index=True)
     
     with col2:
-        st.markdown("#### 🎯 Performance Categories")
+        st.markdown("#### Performance Categories")
         
         # Risk level distribution
         high_risk = len(df[df['Predicted_Score'] < 40])
@@ -424,7 +424,7 @@ def show_statistical_summary(df):
         st.dataframe(categories_df, use_container_width=True, hide_index=True)
     
     # Distribution analysis
-    st.markdown("#### 📈 Distribution Analysis")
+    st.markdown("#### Distribution Analysis")
     
     col1, col2 = st.columns(2)
     
@@ -497,7 +497,7 @@ def show_statistical_summary(df):
         st.info(f"**Distribution Shape:** {skew_interpretation}")
     
     # Outlier analysis
-    st.markdown("#### 🎯 Outlier Analysis")
+    st.markdown("#### Outlier Analysis")
     
     Q1 = df['Predicted_Score'].quantile(0.25)
     Q3 = df['Predicted_Score'].quantile(0.75)
@@ -519,7 +519,7 @@ def show_statistical_summary(df):
         st.metric("Upper Bound", f"{upper_bound:.1f}")
     
     if len(outliers) > 0:
-        st.markdown("##### 🔍 Outlier Students")
+        st.markdown("##### Outlier Students")
         outlier_display = outliers[['Student_ID', 'Predicted_Score']].copy()
         outlier_display.columns = ['Student ID', 'Predicted Score']
         st.dataframe(outlier_display, use_container_width=True, hide_index=True)
@@ -527,7 +527,7 @@ def show_statistical_summary(df):
         st.success("No outliers detected in the score distribution.")
     
     # Key insights
-    st.markdown("#### 💡 Key Statistical Insights")
+    st.markdown("#### Key Statistical Insights")
     
     insights = []
     
@@ -536,25 +536,25 @@ def show_statistical_summary(df):
     if mean_score >= 70:
         insights.append("🌟 **Excellent Overall Performance**: The class average is in the excellent range.")
     elif mean_score >= 60:
-        insights.append("✅ **Good Overall Performance**: The class is performing well above the pass threshold.")
+        insights.append("**Good Overall Performance**: The class is performing well above the pass threshold.")
     elif mean_score >= 50:
-        insights.append("⚠️ **Moderate Performance**: The class average is just above the pass threshold.")
+        insights.append("**Moderate Performance**: The class average is just above the pass threshold.")
     else:
-        insights.append("🚨 **Below Average Performance**: The class may need significant intervention.")
+        insights.append("**Below Average Performance**: The class may need significant intervention.")
     
     # Distribution insights
     std_dev = df['Predicted_Score'].std()
     if std_dev < 10:
-        insights.append("📊 **Consistent Performance**: Low variability suggests similar performance levels across students.")
+        insights.append("**Consistent Performance**: Low variability suggests similar performance levels across students.")
     elif std_dev > 20:
-        insights.append("📈 **High Variability**: Large spread in scores suggests diverse performance levels.")
+        insights.append("**High Variability**: Large spread in scores suggests diverse performance levels.")
     
     # Risk insights
     risk_percentage = (len(df[df['Predicted_Score'] < 50]) / len(df)) * 100
     if risk_percentage < 10:
-        insights.append("🎯 **Low Risk Population**: Most students are predicted to perform well.")
+        insights.append("**Low Risk Population**: Most students are predicted to perform well.")
     elif risk_percentage > 30:
-        insights.append("⚠️ **High Risk Population**: A significant portion of students may need support.")
+        insights.append("**High Risk Population**: A significant portion of students may need support.")
     
     for insight in insights:
         st.markdown(insight)

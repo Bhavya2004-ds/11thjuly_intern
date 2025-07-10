@@ -11,7 +11,7 @@ def show():
     # Main header
     st.markdown("""
     <div class="main-header">
-        <h1>📊 Performance Dashboard</h1>
+        <h1>Performance Dashboard</h1>
         <p>Real-time insights into student performance and risk assessment</p>
     </div>
     """, unsafe_allow_html=True)
@@ -20,7 +20,7 @@ def show():
     if 'df' not in st.session_state or st.session_state.df is None:
         st.markdown("""
         <div class="info-card warning-card">
-            <h3>📤 No Data Available</h3>
+            <h3>No Data Available</h3>
             <p>Please upload student data first to view the dashboard insights.</p>
             <p>Navigate to the <strong>"Upload & Analyze"</strong> page to get started.</p>
         </div>
@@ -28,7 +28,7 @@ def show():
         
         # Show sample dashboard with dummy data
         st.markdown("---")
-        st.markdown("### 👀 Dashboard Preview")
+        st.markdown("### Dashboard Preview")
         show_sample_dashboard()
         return
     
@@ -42,7 +42,7 @@ def show():
         return
     
     # Overview metrics
-    st.markdown('<p class="section-header">📈 Key Performance Indicators</p>', unsafe_allow_html=True)
+    st.markdown('<p class="section-header">Key Performance Indicators</p>', unsafe_allow_html=True)
     
     col1, col2, col3, col4 = st.columns(4)
     
@@ -79,7 +79,7 @@ def show():
         """, unsafe_allow_html=True)
     
     # Charts section
-    st.markdown('<p class="section-header">📊 Performance Analysis</p>', unsafe_allow_html=True)
+    st.markdown('<p class="section-header">Performance Analysis</p>', unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
     
@@ -125,13 +125,13 @@ def show():
         st.plotly_chart(fig, use_container_width=True)
     
     # Additional insights
-    st.markdown('<p class="section-header">🔍 Detailed Insights</p>', unsafe_allow_html=True)
+    st.markdown('<p class="section-header">Detailed Insights</p>', unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
     
     with col1:
         if 'gender_performance' in insights:
-            st.markdown("#### 👥 Performance by Gender")
+            st.markdown("#### Performance by Gender")
             gender_df = pd.DataFrame(list(insights['gender_performance'].items()), 
                                    columns=['Gender', 'Avg Score'])
             gender_df['Gender'] = gender_df['Gender'].map({0: 'Male', 1: 'Female'})
@@ -154,7 +154,7 @@ def show():
     
     with col2:
         if 'extracurricular_impact' in insights:
-            st.markdown("#### 🏃‍♂️ Extracurricular Impact")
+            st.markdown("#### Extracurricular Impact")
             extra_df = pd.DataFrame(list(insights['extracurricular_impact'].items()), 
                                   columns=['Participation', 'Avg Score'])
             extra_df['Participation'] = extra_df['Participation'].map({0: 'No', 1: 'Yes'})
@@ -176,7 +176,7 @@ def show():
             st.plotly_chart(fig, use_container_width=True)
     
     # Recent activity summary
-    st.markdown('<p class="section-header">📋 Summary Report</p>', unsafe_allow_html=True)
+    st.markdown('<p class="section-header">Summary Report</p>', unsafe_allow_html=True)
     
     # Create summary cards
     col1, col2, col3 = st.columns(3)
@@ -184,7 +184,7 @@ def show():
     with col1:
         st.markdown(f"""
         <div class="info-card success-card">
-            <h4>✅ Students Performing Well</h4>
+            <h4>Students Performing Well</h4>
             <p><strong>{insights['excellent'] + insights['low_risk']}</strong> students are predicted to score 50% or above</p>
             <p>That's <strong>{round((insights['excellent'] + insights['low_risk']) / insights['total_students'] * 100, 1)}%</strong> of all students!</p>
         </div>
@@ -193,17 +193,17 @@ def show():
     with col2:
         st.markdown(f"""
         <div class="info-card warning-card">
-            <h4>⚠️ Students Needing Support</h4>
+            <h4>Students Needing Support</h4>
             <p><strong>{insights['high_risk'] + insights['moderate_risk']}</strong> students may need additional support</p>
             <p>Focus on <strong>{insights['high_risk']}</strong> high-risk students first</p>
         </div>
         """, unsafe_allow_html=True)
     
     with col3:
-        performance_trend = "📈 Positive" if insights['avg_score'] >= 60 else "📉 Needs Improvement"
+        performance_trend = "Positive" if insights['avg_score'] >= 60 else "Needs Improvement"
         st.markdown(f"""
         <div class="info-card">
-            <h4>📊 Overall Performance</h4>
+            <h4>Overall Performance</h4>
             <p>Class average: <strong>{insights['avg_score']}%</strong></p>
             <p>Trend: <strong>{performance_trend}</strong></p>
         </div>
