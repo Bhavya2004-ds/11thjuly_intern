@@ -5,13 +5,13 @@ from pathlib import Path
 # Add the current directory to the Python path
 sys.path.append(str(Path(__file__).parent))
 
-from modules import dashboard, upload_data, analytics, about, login, signup
+from modules import dashboard, upload_data, analytics, about, login, signup, home
 from utils.styles import load_css
 
 # Page configuration
 st.set_page_config(
     page_title="EduPredict - Student Performance Analytics",
-    page_icon="🎓",
+    page_icon=None,
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -24,7 +24,7 @@ if 'page' not in st.session_state:
     if st.session_state.get('logged_in', False):
         st.session_state.page = 'Dashboard'
     else:
-        st.session_state.page = 'Login'
+        st.session_state.page = 'Home'
 
 # Sidebar navigation
 with st.sidebar:
@@ -41,13 +41,16 @@ with st.sidebar:
     is_logged_in = st.session_state.get('logged_in', False)
     
     if not is_logged_in:
-        # Show login/signup navigation
+        # Show home/auth navigation
+        if st.button("Home", key="Home", use_container_width=True):
+            st.session_state.page = 'Home'
+        
+        st.markdown("### Get Started")
         auth_pages = {
             "Sign In": "Login",
             "Create Account": "Signup"
         }
         
-        st.markdown("### Get Started")
         for display_name, page_key in auth_pages.items():
             if st.button(display_name, key=page_key, use_container_width=True):
                 st.session_state.page = page_key
@@ -81,13 +84,15 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("""
     <div style="text-align: center; color: #888; font-size: 12px;">
-        <p>Built with ❤️ for educators</p>
+        <p>Built with care for educators</p>
         <p>© 2024 EduPredict</p>
     </div>
     """, unsafe_allow_html=True)
 
 # Main content area
-if st.session_state.page == 'Login':
+if st.session_state.page == 'Home':
+    home.show()
+elif st.session_state.page == 'Login':
     login.show()
 elif st.session_state.page == 'Signup':
     signup.show()
