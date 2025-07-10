@@ -5,7 +5,7 @@ from pathlib import Path
 # Add the current directory to the Python path
 sys.path.append(str(Path(__file__).parent))
 
-from modules import dashboard, upload_data, analytics, about, login, signup, home
+from modules import dashboard, upload_data, analytics, about, login, signup
 from utils.styles import load_css
 
 # Page configuration
@@ -24,7 +24,7 @@ if 'page' not in st.session_state:
     if st.session_state.get('logged_in', False):
         st.session_state.page = 'Dashboard'
     else:
-        st.session_state.page = 'Home'
+        st.session_state.page = 'Auth'
 
 # Sidebar navigation
 with st.sidebar:
@@ -41,19 +41,11 @@ with st.sidebar:
     is_logged_in = st.session_state.get('logged_in', False)
     
     if not is_logged_in:
-        # Show home/auth navigation
-        if st.button("Home", key="Home", use_container_width=True):
-            st.session_state.page = 'Home'
+        st.markdown("### Welcome to EduPredict")
+        st.markdown("Please sign in or create an account to access the analytics platform.")
         
-        st.markdown("### Get Started")
-        auth_pages = {
-            "Sign In": "Login",
-            "Create Account": "Signup"
-        }
-        
-        for display_name, page_key in auth_pages.items():
-            if st.button(display_name, key=page_key, use_container_width=True):
-                st.session_state.page = page_key
+        if st.button("About EduPredict", key="About", use_container_width=True):
+            st.session_state.page = 'About'
     else:
         # Show main navigation for logged in users
         pages = {
@@ -90,29 +82,41 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
 # Main content area
-if st.session_state.page == 'Home':
-    home.show()
-elif st.session_state.page == 'Login':
-    login.show()
-elif st.session_state.page == 'Signup':
-    signup.show()
+if st.session_state.page == 'Auth':
+    # Show login/signup tabs directly in app.py
+    st.markdown("""
+    <div class="main-header">
+        <h1>EduPredict</h1>
+        <p>Student Performance Analytics Platform</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Login/Signup tabs
+    tab1, tab2 = st.tabs(["Sign In", "Create Account"])
+    
+    with tab1:
+        login.show()
+    
+    with tab2:
+        signup.show()
+        
 elif st.session_state.page == 'Dashboard':
     if st.session_state.get('logged_in', False):
         dashboard.show()
     else:
-        st.session_state.page = 'Login'
+        st.session_state.page = 'Auth'
         st.rerun()
 elif st.session_state.page == 'Upload':
     if st.session_state.get('logged_in', False):
         upload_data.show()
     else:
-        st.session_state.page = 'Login'
+        st.session_state.page = 'Auth'
         st.rerun()
 elif st.session_state.page == 'Analytics':
     if st.session_state.get('logged_in', False):
         analytics.show()
     else:
-        st.session_state.page = 'Login'
+        st.session_state.page = 'Auth'
         st.rerun()
 elif st.session_state.page == 'About':
     about.show()

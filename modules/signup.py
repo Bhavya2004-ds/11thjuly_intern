@@ -38,12 +38,10 @@ def validate_password(password):
 
 def show():
     st.markdown("""
-    <div class="auth-container">
-        <div class="auth-card">
-            <div class="auth-header">
-                <h1>Create Account</h1>
-                <p>Join EduPredict to unlock powerful analytics</p>
-            </div>
+    <div class="auth-header" style="text-align: center; margin-bottom: 2rem;">
+        <h2>Create Your Account</h2>
+        <p>Join EduPredict to unlock powerful analytics</p>
+    </div>
     """, unsafe_allow_html=True)
     
     # Signup form
@@ -74,10 +72,7 @@ def show():
         col1, col2 = st.columns(2)
         with col1:
             signup_button = st.form_submit_button("Create Account", use_container_width=True)
-        with col2:
-            if st.form_submit_button("Sign In Instead", use_container_width=True, type="secondary"):
-                st.session_state.page = 'Login'
-                st.rerun()
+        # No need for navigation button since we're using tabs
         
         if signup_button:
             # Validation
@@ -159,5 +154,3 @@ def show():
         </div>
     </div>
     """, unsafe_allow_html=True)
-    
-    st.markdown("</div></div>", unsafe_allow_html=True)

@@ -22,12 +22,10 @@ def save_users(users):
 
 def show():
     st.markdown("""
-    <div class="auth-container">
-        <div class="auth-card">
-            <div class="auth-header">
-                <h1>Sign In</h1>
-                <p>Access your EduPredict dashboard</p>
-            </div>
+    <div class="auth-header" style="text-align: center; margin-bottom: 2rem;">
+        <h2>Sign In to Your Account</h2>
+        <p>Access your EduPredict dashboard</p>
+    </div>
     """, unsafe_allow_html=True)
     
     # Check if already logged in
@@ -47,7 +45,6 @@ def show():
             st.success("Logged out successfully!")
             st.rerun()
         
-        st.markdown("</div></div>", unsafe_allow_html=True)
         return
     
     # Login form
@@ -60,10 +57,7 @@ def show():
         col1, col2 = st.columns(2)
         with col1:
             login_button = st.form_submit_button("Sign In", use_container_width=True)
-        with col2:
-            if st.form_submit_button("Create Account", use_container_width=True, type="secondary"):
-                st.session_state.page = 'Signup'
-                st.rerun()
+        # No need for navigation button since we're using tabs
         
         if login_button:
             if username and password:
@@ -117,5 +111,3 @@ def show():
         </div>
     </div>
     """, unsafe_allow_html=True)
-    
-    st.markdown("</div></div>", unsafe_allow_html=True)
