@@ -5,7 +5,7 @@ from pathlib import Path
 # Add the current directory to the Python path
 sys.path.append(str(Path(__file__).parent))
 
-from pages import dashboard, upload_data, analytics, about
+from modules import dashboard, upload_data, analytics, about
 from utils.styles import load_css
 
 # Page configuration
