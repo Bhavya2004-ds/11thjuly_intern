@@ -228,8 +228,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   return (
     <AuthCard>
       <AuthHeader>
-        <h1>Welcome Back</h1>
-        <p>Sign in to your account to continue</p>
+        <h1>स्वागत है</h1>
+        <p>अपने खाते में साइन इन करें</p>
       </AuthHeader>
 
       {loginError && (

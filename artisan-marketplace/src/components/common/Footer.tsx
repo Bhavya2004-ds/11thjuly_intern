@@ -216,9 +216,9 @@ const Footer: React.FC = () => {
     <FooterWrapper>
       <FooterContent>
         <FooterGrid>
-          <BrandSection>
-            <div className="logo">CraftBazaar</div>
-            <p className="tagline">"Where tradition meets the world"</p>
+                  <BrandSection>
+          <div className="logo">शिल्पकारी</div>
+          <p className="tagline">"जहाँ परंपरा मिलती है दुनिया से"</p>
             <p>
               Connecting talented artisans with art lovers worldwide. We celebrate 
               the rich heritage of Indian handicrafts and provide a platform for 
@@ -290,7 +290,7 @@ const Footer: React.FC = () => {
 
         <FooterBottom>
           <div>
-            &copy; 2024 CraftBazaar. All rights reserved. Made with ❤️ for artisans.
+            &copy; 2024 शिल्पकारी (Shilpkari). All rights reserved. Made with ❤️ for artisans.
           </div>
           <LegalLinks>
             <Link to="/privacy">Privacy Policy</Link>

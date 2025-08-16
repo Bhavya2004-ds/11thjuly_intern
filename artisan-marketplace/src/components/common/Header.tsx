@@ -263,7 +263,7 @@ const Header: React.FC<HeaderProps> = ({
           </MobileMenuButton>
           
           <Logo to="/">
-            CraftBazaar
+            शिल्पकारी
           </Logo>
         </FlexBox>
 

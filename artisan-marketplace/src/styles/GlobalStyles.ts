@@ -1,6 +1,9 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Kalam:wght@300;400;700&family=Mukti:wght@300;400;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+  
   * {
     margin: 0;
     padding: 0;
@@ -8,20 +11,23 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
+    font-family: 'Noto Sans Devanagari', 'Mukti', 'Kalam', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #fafafa;
-    color: #333;
-    line-height: 1.6;
+    background-color: #faf6f0;
+    background-image: 
+      radial-gradient(circle at 25px 25px, rgba(184, 134, 11, 0.1) 2px, transparent 0),
+      radial-gradient(circle at 75px 75px, rgba(205, 133, 63, 0.1) 2px, transparent 0);
+    background-size: 100px 100px;
+    color: #2d1810;
+    line-height: 1.7;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cinzel', 'Cormorant Garamond', 'Noto Sans Devanagari', serif;
     font-weight: 600;
     line-height: 1.3;
+    letter-spacing: 0.5px;
   }
 
   a {
@@ -51,31 +57,43 @@ export const GlobalStyles = createGlobalStyle`
   }
 `;
 
-// Color palette inspired by traditional Indian crafts
+// Traditional Indian color palette inspired by ancient crafts
 export const colors = {
-  primary: '#B8860B', // Dark goldenrod - represents traditional gold work
-  primaryLight: '#DAA520',
-  primaryDark: '#8B7000',
+  primary: '#C9A96E', // Golden brass - traditional metalwork
+  primaryLight: '#E4C88A',
+  primaryDark: '#A67C3A',
   
-  secondary: '#CD853F', // Peru - earthy brown for handicrafts
-  secondaryLight: '#DEB887',
-  secondaryDark: '#A0522D',
+  secondary: '#8B4513', // Saddle brown - earthen pottery and wood
+  secondaryLight: '#CD853F',
+  secondaryDark: '#654321',
   
-  accent: '#DC143C', // Crimson - vibrant red like Indian textiles
-  accentLight: '#FF6B6B',
+  accent: '#B22222', // Fire brick - traditional Indian red
+  accentLight: '#DC143C',
+  accentDark: '#8B0000',
+  
+  tertiary: '#2F4F4F', // Dark slate gray - traditional indigo
+  tertiaryLight: '#708090',
   
   neutral: {
-    white: '#FFFFFF',
-    light: '#F8F9FA',
-    medium: '#E9ECEF',
-    dark: '#6C757D',
-    black: '#212529'
+    white: '#FFF8F0', // Warm white like handmade paper
+    light: '#F5F1E8', // Cream like khadi fabric
+    medium: '#D3C7B8', // Light brown like jute
+    dark: '#5D4E37', // Dark brown like leather
+    black: '#2D1810' // Dark chocolate brown
   },
   
-  success: '#28A745',
-  warning: '#FFC107',
-  error: '#DC3545',
-  info: '#17A2B8'
+  traditional: {
+    saffron: '#FF9933', // Saffron - auspicious color
+    turmeric: '#E4B429', // Turmeric yellow
+    henna: '#CD853F', // Henna brown
+    indigo: '#4B0082', // Traditional indigo dye
+    vermillion: '#FF4500' // Vermillion red
+  },
+  
+  success: '#228B22',
+  warning: '#FF8C00',
+  error: '#B22222',
+  info: '#4682B4'
 };
 
 // Common styled components

@@ -312,10 +312,10 @@ const TestimonialCard = styled(Card)`
 const featuredProducts: Product[] = [
   {
     id: '1',
-    name: 'Handwoven Silk Saree',
-    description: 'Beautiful traditional Banarasi silk saree with intricate gold zari work',
+    name: 'हस्तबुना रेशमी साड़ी / Handwoven Silk Saree',
+    description: 'जटिल सोने की जरी के काम के साथ सुंदर पारंपरिक बनारसी रेशमी साड़ी',
     price: 15999,
-    images: ['https://via.placeholder.com/300x200?text=Silk+Saree'],
+    images: ['[REPLACE-WITH-SILK-SAREE-IMAGE]'],
     category: 'Textiles',
     subCategory: 'Sarees',
     artisanId: '1',
@@ -419,17 +419,17 @@ const HomePage: React.FC = () => {
     <>
       <HeroSection>
         <HeroContent>
-          <HeroTitle>Discover Authentic Indian Handicrafts</HeroTitle>
+          <HeroTitle>प्रामाणिक भारतीय शिल्पकला की खोज करें</HeroTitle>
           <HeroSubtitle>
-            Connect with skilled artisans and bring home unique, handcrafted treasures 
-            that carry centuries of tradition and artistry.
+            कुशल कारीगरों से जुड़ें और अनोखे हस्तशिल्प घर लाएं जो 
+            सदियों की परंपरा और कलात्मकता को समेटे हुए हैं।
           </HeroSubtitle>
           <HeroActions>
             <Button size="large" onClick={() => navigate('/products')}>
-              Explore Products <ArrowRight size={20} />
+              उत्पाद देखें <ArrowRight size={20} />
             </Button>
             <Button variant="outline" size="large" onClick={() => navigate('/artisans')}>
-              Meet Our Artisans
+              हमारे कारीगरों से मिलें
             </Button>
           </HeroActions>
         </HeroContent>
@@ -473,8 +473,8 @@ const HomePage: React.FC = () => {
       <Section>
         <Container>
           <SectionHeader>
-            <h2>Featured Products</h2>
-            <p>Discover our handpicked selection of exceptional crafts from talented artisans</p>
+            <h2>विशेष उत्पाद / Featured Products</h2>
+            <p>प्रतिभाशाली कारीगरों के असाधारण शिल्प का हमारा चुनिंदा संग्रह देखें</p>
           </SectionHeader>
           
           <ProductGrid>

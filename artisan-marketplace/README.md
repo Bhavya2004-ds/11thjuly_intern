@@ -1,10 +1,10 @@
-# CraftBazaar - Artisan E-commerce Marketplace
+# शिल्पकारी (Shilpkari) - Traditional Indian Artisan E-commerce Marketplace
 
 An exclusive e-commerce platform designed to connect skilled Indian artisans with buyers worldwide. This platform promotes traditional handicrafts while providing modern e-commerce functionality with advanced features like demand forecasting, automated quality checks, and VR/AR integration.
 
 ## 🎯 Project Overview
 
-**CraftBazaar** is a comprehensive 4th year project that aims to:
+**शिल्पकारी (Shilpkari)** is a comprehensive 4th year project that aims to:
 - Promote the Indian handicraft industry globally
 - Provide a common platform to make, market, and sell high-quality handicrafts
 - Support over 23 million craftsmen across India

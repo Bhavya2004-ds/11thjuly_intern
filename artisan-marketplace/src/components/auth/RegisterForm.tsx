@@ -381,8 +381,8 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
   return (
     <AuthCard>
       <AuthHeader>
-        <h1>Join CraftBazaar</h1>
-        <p>Create your account and become part of our community</p>
+        <h1>शिल्पकारी में शामिल हों</h1>
+        <p>अपना खाता बनाएं और हमारे समुदाय का हिस्सा बनें</p>
       </AuthHeader>
 
       {registerError && (
