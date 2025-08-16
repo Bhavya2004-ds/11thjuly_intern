@@ -210,6 +210,14 @@ const MobileSearchInput = styled.input`
   }
 `;
 
+const MobileSearchButton = styled(IconButton)`
+  display: none;
+  
+  @media (max-width: 768px) {
+    display: flex !important;
+  }
+`;
+
 interface HeaderProps {
   // In a real app, we'd get this from auth context
   isAuthenticated?: boolean;
@@ -287,13 +295,11 @@ const Header: React.FC<HeaderProps> = ({
         </SearchContainer>
 
         <UserActions>
-          <IconButton 
+          <MobileSearchButton 
             onClick={handleMobileSearchToggle}
-            style={{ display: 'none' }}
-            className="mobile-search-btn"
           >
-            <Search size={20} />
-          </IconButton>
+                        <Search size={20} />
+            </MobileSearchButton>
           
           {isAuthenticated ? (
             <>
@@ -344,13 +350,7 @@ const Header: React.FC<HeaderProps> = ({
         </form>
       </MobileSearchContainer>
 
-      <style jsx>{`
-        @media (max-width: 768px) {
-          .mobile-search-btn {
-            display: flex !important;
-          }
-        }
-      `}</style>
+
     </HeaderWrapper>
   );
 };

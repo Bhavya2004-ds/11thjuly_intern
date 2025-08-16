@@ -284,6 +284,14 @@ const EmptyState = styled.div`
   }
 `;
 
+const MobileCloseButton = styled(Button)`
+  display: none;
+  
+  @media (max-width: 968px) {
+    display: flex !important;
+  }
+`;
+
 // Mock product data - in a real app, this would come from an API
 const mockProducts: Product[] = [
   {
@@ -517,15 +525,13 @@ const ProductsPage: React.FC = () => {
         <FiltersSidebar isOpen={isFiltersOpen}>
           <FlexBox justify="space-between" align="center" style={{ marginBottom: '20px' }}>
             <h2>Filters</h2>
-            <Button 
+            <MobileCloseButton 
               variant="ghost" 
               size="small"
               onClick={() => setIsFiltersOpen(false)}
-              style={{ display: 'none' }}
-              className="mobile-close-btn"
             >
-              <X size={20} />
-            </Button>
+                            <X size={20} />
+              </MobileCloseButton>
           </FlexBox>
 
           {/* Search Filter */}
@@ -712,13 +718,7 @@ const ProductsPage: React.FC = () => {
         </ResultsSection>
       </FiltersAndResults>
 
-      <style jsx>{`
-        @media (max-width: 968px) {
-          .mobile-close-btn {
-            display: flex !important;
-          }
-        }
-      `}</style>
+
     </ProductsPageWrapper>
   );
 };
