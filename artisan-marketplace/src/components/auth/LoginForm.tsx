@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import { Eye, EyeOff, Mail, Lock, AlertCircle } from 'lucide-react';
 import { 
   Card, 
@@ -153,17 +151,7 @@ const ErrorAlert = styled.div`
   }
 `;
 
-// Validation schema
-const loginSchema = yup.object({
-  email: yup
-    .string()
-    .email('Please enter a valid email address')
-    .required('Email is required'),
-  password: yup
-    .string()
-    .min(6, 'Password must be at least 6 characters')
-    .required('Password is required')
-});
+
 
 interface LoginFormData {
   email: string;
@@ -184,14 +172,30 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<LoginFormData>({
-    resolver: yupResolver(loginSchema)
-  });
+  } = useForm<LoginFormData>();
+
+  // Simple validation function
+  const validateForm = (data: LoginFormData): string | null => {
+    if (!data.email || !/\S+@\S+\.\S+/.test(data.email)) {
+      return 'Please enter a valid email address';
+    }
+    if (!data.password || data.password.length < 6) {
+      return 'Password must be at least 6 characters';
+    }
+    return null;
+  };
 
   const onSubmit = async (data: LoginFormData) => {
     try {
       setIsLoading(true);
       setLoginError('');
+      
+      // Validate form
+      const validationError = validateForm(data);
+      if (validationError) {
+        setLoginError(validationError);
+        return;
+      }
       
       if (onLogin) {
         await onLogin(data);
@@ -243,12 +247,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
               id="email"
               type="email"
               placeholder="Enter your email"
-              hasError={!!errors.email}
-              {...register('email')}
+              {...register('email', { required: true })}
             />
             <Mail className="input-icon" size={18} />
           </InputWrapper>
-          {errors.email && <ErrorText>{errors.email.message}</ErrorText>}
         </FormGroup>
 
         <FormGroup>
@@ -258,8 +260,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
               id="password"
               type={showPassword ? 'text' : 'password'}
               placeholder="Enter your password"
-              hasError={!!errors.password}
-              {...register('password')}
+              {...register('password', { required: true })}
             />
             <Lock className="input-icon" size={18} />
             <button
@@ -271,7 +272,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
           </PasswordWrapper>
-          {errors.password && <ErrorText>{errors.password.message}</ErrorText>}
         </FormGroup>
 
         <FormActions>

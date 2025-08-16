@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { Eye, EyeOff, Mail, Lock, User, Phone, MapPin, AlertCircle, Check } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, User, Phone, MapPin, AlertCircle } from 'lucide-react';
 import { 
   Card, 
   Button, 
@@ -257,48 +255,6 @@ const SignInLink = styled.div`
   }
 `;
 
-// Validation schema
-const registerSchema = yup.object({
-  userType: yup
-    .string()
-    .oneOf(['buyer', 'artisan'], 'Please select a user type')
-    .required('User type is required'),
-  firstName: yup
-    .string()
-    .min(2, 'First name must be at least 2 characters')
-    .required('First name is required'),
-  lastName: yup
-    .string()
-    .min(2, 'Last name must be at least 2 characters')
-    .required('Last name is required'),
-  email: yup
-    .string()
-    .email('Please enter a valid email address')
-    .required('Email is required'),
-  phone: yup
-    .string()
-    .matches(/^[6-9]\d{9}$/, 'Please enter a valid Indian mobile number')
-    .required('Phone number is required'),
-  password: yup
-    .string()
-    .min(8, 'Password must be at least 8 characters')
-    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, 'Password must contain uppercase, lowercase, and number')
-    .required('Password is required'),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref('password')], 'Passwords must match')
-    .required('Please confirm your password'),
-  city: yup
-    .string()
-    .required('City is required'),
-  state: yup
-    .string()
-    .required('State is required'),
-  agreesToTerms: yup
-    .boolean()
-    .oneOf([true], 'You must agree to the terms and conditions')
-});
-
 interface RegisterFormData {
   userType: 'buyer' | 'artisan';
   firstName: string;
@@ -332,10 +288,22 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
     setValue,
     formState: { errors }
   } = useForm<RegisterFormData>({
-    resolver: yupResolver(registerSchema)
+    defaultValues: {
+      userType: '' as any,
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      password: '',
+      confirmPassword: '',
+      city: '',
+      state: '',
+      agreesToTerms: false
+    }
   });
 
   const password = watch('password');
+  const confirmPassword = watch('confirmPassword');
 
   React.useEffect(() => {
     if (password) {
@@ -366,10 +334,33 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
     setValue('userType', type);
   };
 
+  // Custom validation function
+  const validateForm = (data: RegisterFormData): string | null => {
+    if (!data.userType) return 'Please select a user type';
+    if (!data.firstName || data.firstName.length < 2) return 'First name must be at least 2 characters';
+    if (!data.lastName || data.lastName.length < 2) return 'Last name must be at least 2 characters';
+    if (!data.email || !/\S+@\S+\.\S+/.test(data.email)) return 'Please enter a valid email address';
+    if (!data.phone || !/^[6-9]\d{9}$/.test(data.phone)) return 'Please enter a valid 10-digit mobile number';
+    if (!data.password || data.password.length < 8) return 'Password must be at least 8 characters';
+    if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(data.password)) return 'Password must contain uppercase, lowercase, and number';
+    if (data.password !== data.confirmPassword) return 'Passwords do not match';
+    if (!data.city) return 'City is required';
+    if (!data.state) return 'State is required';
+    if (!data.agreesToTerms) return 'You must agree to the terms and conditions';
+    return null;
+  };
+
   const onSubmit = async (data: RegisterFormData) => {
     try {
       setIsLoading(true);
       setRegisterError('');
+      
+      // Custom validation
+      const validationError = validateForm(data);
+      if (validationError) {
+        setRegisterError(validationError);
+        return;
+      }
       
       if (onRegister) {
         await onRegister(data);
@@ -422,7 +413,6 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
               <div className="description">Sell your handcrafted products</div>
             </UserTypeOption>
           </UserTypeOptions>
-          {errors.userType && <ErrorText>{errors.userType.message}</ErrorText>}
         </UserTypeSelector>
 
         <FormRow>
@@ -433,12 +423,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
                 id="firstName"
                 type="text"
                 placeholder="Enter first name"
-                hasError={!!errors.firstName}
-                {...register('firstName')}
+                {...register('firstName', { required: true })}
               />
               <User className="input-icon" size={18} />
             </InputWrapper>
-            {errors.firstName && <ErrorText>{errors.firstName.message}</ErrorText>}
           </FormGroup>
 
           <FormGroup>
@@ -448,12 +436,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
                 id="lastName"
                 type="text"
                 placeholder="Enter last name"
-                hasError={!!errors.lastName}
-                {...register('lastName')}
+                {...register('lastName', { required: true })}
               />
               <User className="input-icon" size={18} />
             </InputWrapper>
-            {errors.lastName && <ErrorText>{errors.lastName.message}</ErrorText>}
           </FormGroup>
         </FormRow>
 
@@ -464,12 +450,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
               id="email"
               type="email"
               placeholder="Enter your email"
-              hasError={!!errors.email}
-              {...register('email')}
+              {...register('email', { required: true })}
             />
             <Mail className="input-icon" size={18} />
           </InputWrapper>
-          {errors.email && <ErrorText>{errors.email.message}</ErrorText>}
         </FormGroup>
 
         <FormGroup>
@@ -479,12 +463,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
               id="phone"
               type="tel"
               placeholder="Enter 10-digit mobile number"
-              hasError={!!errors.phone}
-              {...register('phone')}
+              {...register('phone', { required: true })}
             />
             <Phone className="input-icon" size={18} />
           </InputWrapper>
-          {errors.phone && <ErrorText>{errors.phone.message}</ErrorText>}
         </FormGroup>
 
         <FormRow>
@@ -495,20 +477,17 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
                 id="city"
                 type="text"
                 placeholder="Enter your city"
-                hasError={!!errors.city}
-                {...register('city')}
+                {...register('city', { required: true })}
               />
               <MapPin className="input-icon" size={18} />
             </InputWrapper>
-            {errors.city && <ErrorText>{errors.city.message}</ErrorText>}
           </FormGroup>
 
           <FormGroup>
             <label htmlFor="state">State</label>
             <Select
               id="state"
-              hasError={!!errors.state}
-              {...register('state')}
+              {...register('state', { required: true })}
             >
               <option value="">Select state</option>
               <option value="andhra-pradesh">Andhra Pradesh</option>
@@ -525,7 +504,6 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
               <option value="uttar-pradesh">Uttar Pradesh</option>
               <option value="west-bengal">West Bengal</option>
             </Select>
-            {errors.state && <ErrorText>{errors.state.message}</ErrorText>}
           </FormGroup>
         </FormRow>
 
@@ -536,8 +514,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
               id="password"
               type={showPassword ? 'text' : 'password'}
               placeholder="Create a strong password"
-              hasError={!!errors.password}
-              {...register('password')}
+              {...register('password', { required: true })}
             />
             <Lock className="input-icon" size={18} />
             <button
@@ -557,7 +534,6 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
               <div className="strength-text">{getPasswordStrengthText()}</div>
             </PasswordStrength>
           )}
-          {errors.password && <ErrorText>{errors.password.message}</ErrorText>}
         </FormGroup>
 
         <FormGroup>
@@ -567,8 +543,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
               id="confirmPassword"
               type={showConfirmPassword ? 'text' : 'password'}
               placeholder="Confirm your password"
-              hasError={!!errors.confirmPassword}
-              {...register('confirmPassword')}
+              {...register('confirmPassword', { required: true })}
             />
             <Lock className="input-icon" size={18} />
             <button
@@ -580,21 +555,19 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
               {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
           </PasswordWrapper>
-          {errors.confirmPassword && <ErrorText>{errors.confirmPassword.message}</ErrorText>}
         </FormGroup>
 
         <TermsCheckbox>
           <label>
             <input
               type="checkbox"
-              {...register('agreesToTerms')}
+              {...register('agreesToTerms', { required: true })}
             />
             <span>
               I agree to the <Link to="/terms">Terms of Service</Link> and{' '}
               <Link to="/privacy">Privacy Policy</Link>
             </span>
           </label>
-          {errors.agreesToTerms && <ErrorText>{errors.agreesToTerms.message}</ErrorText>}
         </TermsCheckbox>
 
         <Button

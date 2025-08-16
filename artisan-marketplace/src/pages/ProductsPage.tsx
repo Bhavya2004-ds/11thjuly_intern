@@ -292,7 +292,28 @@ const MobileCloseButton = styled(Button)`
   }
 `;
 
-// Mock product data - in a real app, this would come from an API
+// Mock product data - simplified version
+const createMockProduct = (id: number): Product => ({
+  id: id.toString(),
+  name: `Handcrafted Item ${id}`,
+  description: 'Beautiful handcrafted item with traditional techniques',
+  price: Math.floor(Math.random() * 10000) + 1000,
+  images: [`https://via.placeholder.com/300x240?text=Product+${id}`],
+  category: ['Textiles', 'Pottery', 'Jewelry', 'Wood Craft'][Math.floor(Math.random() * 4)],
+  subCategory: 'Traditional',
+  artisanId: id.toString(),
+  materials: ['Cotton', 'Clay', 'Silver', 'Wood'],
+  dimensions: { length: 20, width: 15, height: 10, weight: 300 },
+  stock: Math.floor(Math.random() * 20) + 1,
+  isCustomizable: Math.random() > 0.5,
+  craftingTime: Math.floor(Math.random() * 30) + 5,
+  tags: ['traditional', 'handmade'],
+  rating: 4 + Math.random(),
+  reviewCount: Math.floor(Math.random() * 50) + 5,
+  createdAt: new Date(),
+  updatedAt: new Date()
+});
+
 const mockProducts: Product[] = [
   {
     id: '1',
@@ -354,27 +375,8 @@ const mockProducts: Product[] = [
     createdAt: new Date(),
     updatedAt: new Date()
   },
-  // Add more mock products for demo purposes
-  ...Array.from({ length: 12 }, (_, i) => ({
-    id: `${i + 4}`,
-    name: `Handcrafted Item ${i + 4}`,
-    description: 'Beautiful handcrafted item with traditional techniques',
-    price: Math.floor(Math.random() * 10000) + 1000,
-    images: [`https://via.placeholder.com/300x240?text=Product+${i + 4}`],
-    category: ['Textiles', 'Pottery', 'Jewelry', 'Wood Craft'][Math.floor(Math.random() * 4)],
-    subCategory: 'Traditional',
-    artisanId: `${i + 4}`,
-    materials: ['Cotton', 'Clay', 'Silver', 'Wood'][Math.floor(Math.random() * 4)],
-    dimensions: { length: 20, width: 15, height: 10, weight: 300 },
-    stock: Math.floor(Math.random() * 20) + 1,
-    isCustomizable: Math.random() > 0.5,
-    craftingTime: Math.floor(Math.random() * 30) + 5,
-    tags: ['traditional', 'handmade'],
-    rating: 4 + Math.random(),
-    reviewCount: Math.floor(Math.random() * 50) + 5,
-    createdAt: new Date(),
-    updatedAt: new Date()
-  }))
+  // Generate additional products
+  ...Array.from({ length: 9 }, (_, i) => createMockProduct(i + 4))
 ];
 
 const ProductsPage: React.FC = () => {
